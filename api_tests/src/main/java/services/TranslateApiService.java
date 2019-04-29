@@ -16,6 +16,7 @@ public interface TranslateApiService {
     Call<DetectResponse> detect(@Query(value="key", encoded=true) String token,
                                 @Field("text") String text);
     @FormUrlEncoded
+    @Headers({"Accept: */*"})
     @POST("api/v1.5/tr.json/translate")
     Call<TranslateResponse> translate(@Query("lang") String lang,
                                       @Query("key") String token,

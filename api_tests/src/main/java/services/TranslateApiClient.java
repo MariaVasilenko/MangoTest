@@ -16,6 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 /**
  * Created by Maria Vasilenko on 29.04.2019
@@ -56,19 +57,17 @@ public class TranslateApiClient {
 
     public DetectResponse detect(String text) throws IOException {
         Response<DetectResponse> response = detectResponse(text);
-        DetectResponse data = new DetectResponse();
-        if(response.isSuccessful()) {
-            data = response.body();
-            System.out.println(data);
-        } else {
-            System.out.println(response.errorBody());
-        }
-        return data;
+        return response.body();
     }
 
-    public Response<TranslateResponse> translate(String lang, String text) throws IOException {
+    public Response<TranslateResponse> translateResponse(String lang, String text) throws IOException {
         Call<TranslateResponse> responseCall = service.translate(lang, projectConfig.apiToken(), text);
         return responseCall.execute();
+    }
+
+    public TranslateResponse translate(String lang, String text) throws IOException {
+        Response<TranslateResponse> response = translateResponse(lang, text);
+        return response.body();
     }
 
 }

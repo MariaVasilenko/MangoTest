@@ -25,7 +25,7 @@ public class LogableAspect {
         final String name = joinPoint.getArgs().length >0
                 ? String.format("%s (%s)", methodSignature.getName(), arrayToString(joinPoint.getArgs()))
                 : methodSignature.getName() +"()";
-        System.out.println(name);
+//        System.out.println(name);
     }
 
     private String arrayToString(Object... array){
