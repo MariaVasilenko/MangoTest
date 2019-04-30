@@ -48,24 +48,20 @@ public class TranslateApiClient {
         service = retrofit.create(TranslateApiService.class);
     }
 
-    public Response<DetectResponse> detectResponse(String text) throws IOException {
+    public DetectResponse detect(String text) throws Exception {
         Call<DetectResponse> responseCall = service.detect(projectConfig.apiToken(), text);
-        return responseCall.execute();
+        Response<DetectResponse> response = responseCall.execute();
+        if (response.isSuccessful())
+            return response.body();
+        else throw new Exception("Response is not Successful: \nErrorBody:"+response.errorBody());
     }
 
-    public DetectResponse detect(String text) throws IOException {
-        Response<DetectResponse> response = detectResponse(text);
-        return response.body();
-    }
-
-    public Response<TranslateResponse> translateResponse(String lang, String text) throws IOException {
+    public TranslateResponse translate(String lang, String text) throws Exception {
         Call<TranslateResponse> responseCall = service.translate(lang, projectConfig.apiToken(), text);
-        return responseCall.execute();
-    }
-
-    public TranslateResponse translate(String lang, String text) throws IOException {
-        Response<TranslateResponse> response = translateResponse(lang, text);
-        return response.body();
+        Response<TranslateResponse> response = responseCall.execute();
+        if (response.isSuccessful())
+            return response.body();
+        else throw new Exception("Response is not Successful: \nErrorBody:"+response.errorBody());
     }
 
 }
