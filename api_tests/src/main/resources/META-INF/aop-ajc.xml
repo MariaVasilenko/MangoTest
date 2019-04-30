@@ -1,5 +1,0 @@
-<aspectj>
-    <aspects>
-        <aspect name="aspect.LogableAspect"/>
-    </aspects>
-</aspectj>

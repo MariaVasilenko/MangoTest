@@ -10,11 +10,13 @@ import retrofit2.http.*;
  * maria.vasilenko.a@gmail.com
  */
 public interface TranslateApiService {
+
     @FormUrlEncoded
     @Headers({"Accept: */*"})
     @POST("api/v1.5/tr.json/detect")
     Call<DetectResponse> detect(@Query(value="key", encoded=true) String token,
                                 @Field("text") String text);
+
     @FormUrlEncoded
     @Headers({"Accept: */*"})
     @POST("api/v1.5/tr.json/translate")

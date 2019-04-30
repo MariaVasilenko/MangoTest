@@ -3,11 +3,10 @@ package models;
 import java.util.List;
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-@Data
-@RequiredArgsConstructor
 @Generated("com.robohorse.robopojogenerator")
 public class TranslateResponse{
 
