@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name ="STDOUT" class = "ch.qos.logback.core.ConsoleAppender" >
+        <encoder>
+            <charset>utf-8</charset>
+            <Pattern>%d%-5level %msg%n</Pattern>
+        </encoder>
+
+        <logger name = "" level = "INFO" additivity = "false">
+            <appender-ref name = "STDOUT"/>
+        </logger>
+
+        <root level = "INFO">
+            <appender-ref name = "STDOUT"/>
+        </root>
+
+    </appender>
+</configuration>
