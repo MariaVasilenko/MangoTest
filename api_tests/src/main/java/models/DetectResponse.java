@@ -2,9 +2,7 @@ package models;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
-import lombok.Data;
 
-@Data
 @Generated("com.robohorse.robopojogenerator")
 public class DetectResponse{
 

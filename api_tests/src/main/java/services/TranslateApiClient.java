@@ -3,7 +3,6 @@ package services;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import config.ProjectConfig;
-import lombok.extern.slf4j.Slf4j;
 import models.DetectResponse;
 import models.TranslateResponse;
 import okhttp3.OkHttpClient;
@@ -14,13 +13,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.IOException;
-
 /**
  * Created by Maria Vasilenko on 29.04.2019
  * maria.vasilenko.a@gmail.com
  */
-@Slf4j
 public class TranslateApiClient {
 
     ProjectConfig projectConfig;
@@ -30,19 +26,20 @@ public class TranslateApiClient {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient.Builder client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor);
-
 
         projectConfig = ConfigFactory.create(ProjectConfig.class);
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel((projectConfig.testDebug().equals("true")) ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BASIC);
+
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(projectConfig.apiPath())
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(client.build())
+                .client(httpClient)
                 .build();
 
         service = retrofit.create(TranslateApiService.class);

@@ -11,4 +11,7 @@ public interface ProjectConfig extends Config {
     @Key("API_TOKEN")
     String apiToken();
 
+    @Key("TEST_DEBUG")
+    String testDebug();
+
 }
