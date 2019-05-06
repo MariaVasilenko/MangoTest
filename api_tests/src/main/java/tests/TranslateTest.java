@@ -12,12 +12,12 @@ import java.util.ArrayList;
  * Created by Maria Vasilenko on 29.04.2019
  * maria.vasilenko.a@gmail.com
  */
-public class TranslateTests {
+public class TranslateTest {
 
     private TranslateApiClient client = new TranslateApiClient();
 
     @Test
-    public void detectLangAndTranslateToRusKatze() throws Exception {
+    void detectLangAndTranslateToRusKatze() throws Exception {
         String text = "katze";
         DetectResponse detect = client.detect(text);
         assertDetect(detect);
@@ -26,7 +26,7 @@ public class TranslateTests {
     }
 
     @Test
-    public void detectLangAndTranslateToRusLeChat() throws Exception {
+    void detectLangAndTranslateToRusLeChat() throws Exception {
         String text = "le chat";
         DetectResponse detect = client.detect(text);
         assertDetect(detect);
@@ -35,7 +35,7 @@ public class TranslateTests {
     }
 
     @Test
-    public void detectLangAndTranslateToRusKishka() throws Exception {
+    void detectLangAndTranslateToRusKishka() throws Exception {
         String text = "кішка";
         DetectResponse detect = client.detect(text);
         assertDetect(detect);
